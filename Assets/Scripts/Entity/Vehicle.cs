@@ -18,6 +18,10 @@ public abstract class Vehicle : MonoBehaviour
 
     protected Vector2 debug_acc;
 
+    [SerializeField]
+    [Range(1f, 20f)]
+    public float max_speed = 5;
+
     protected virtual void Start()
     {
         pos = transform.position;
@@ -31,19 +35,21 @@ public abstract class Vehicle : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        rb.velocity = vel;
+        //rb.velocity = vel;
 
-        pos = transform.position;
+        //pos = transform.position;
 
-        acc = Vector2.zero;
+        //acc = Vector2.zero;
+
+        rb.velocity = Vector2.ClampMagnitude(rb.velocity, max_speed);
+    }
+
+    public void ApplyForceRb(Vector2 force)
+    {
+        rb.AddForce(force);
     }
 
     public virtual void ApplyForce(Vector2 force)
-    {
-        acc += force / rb.mass;
-    }
-
-    public void ApplyEnvironmentalForce(Vector2 force)
     {
         acc += force / rb.mass;
     }

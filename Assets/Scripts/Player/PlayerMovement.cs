@@ -11,7 +11,7 @@ public class PlayerMovement : Vehicle
     [Range(1f, 2f)]
     private float look_distance;
     [SerializeField]
-    [Range(0.1f, 0.6f)]
+    [Range(0.01f, 0.3f)]
     private float rotate_speed;
     private Vector2 look_point;
     private Vector2 velocity;
@@ -21,9 +21,7 @@ public class PlayerMovement : Vehicle
     [Range(0.8f, 1f)]
     public float friction = 0.98f;
 
-    [SerializeField]
-    [Range(1f, 20f)]
-    public float max_speed = 0.98f;
+
 
     protected override void FixedUpdate()
     {
@@ -32,11 +30,13 @@ public class PlayerMovement : Vehicle
         CalculateVelocity();
 
         base.FixedUpdate();
+
+        CalculateRotation();
     }
 
     private void LateUpdate()
     {
-        CalculateRotation();
+
     }
 
     protected override void CalculateRotation()
@@ -51,25 +51,25 @@ public class PlayerMovement : Vehicle
             look_point = Util.Vec3_Vec2(transform.position) + new Vector2(look_distance * Mathf.Cos(temp), look_distance * Mathf.Sin(temp));
         }
 
-        look_point = Vector2.SmoothDamp(look_point, target, ref velocity, rotate_speed, 30f);
+        look_point = Vector2.SmoothDamp(look_point, target, ref velocity, rotate_speed);
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(look_point.y - Util.Vec3_Vec2(transform.position).y, look_point.x - Util.Vec3_Vec2(transform.position).x) * Mathf.Rad2Deg + 90f);
     }
 
     protected override void CalculateVelocity()
     {
-        base.CalculateVelocity();
+        //base.CalculateVelocity();
         /*
          * Apply Friction If:
          * - No input
          * - Input Disabled
          * - Input direction in the opposite of velocity
          */
-        if(PlayerInput.instance.raw.magnitude == 0 || PlayerInput.instance.isDisabled || (Vector2.Dot(PlayerInput.instance.raw, vel) < 0f && PlayerInput.instance.raw.magnitude != 0))
-        {
-            vel *= friction;
-        }
+        //if(PlayerInput.instance.raw.magnitude == 0 || PlayerInput.instance.isDisabled || (Vector2.Dot(PlayerInput.instance.raw, vel) < 0f && PlayerInput.instance.raw.magnitude != 0))
+        //{
+        //    vel *= friction;
+        //}
 
-        vel = Vector2.ClampMagnitude(vel, max_speed);
+        //vel = Vector2.ClampMagnitude(vel, max_speed);
     }
 
     public override void ApplyForce(Vector2 force)
@@ -80,7 +80,7 @@ public class PlayerMovement : Vehicle
 
     private void PlayerMove()
     {
-        ApplyForce(PlayerInput.instance.raw);
+        ApplyForceRb(PlayerInput.instance.raw * speed);
     }
 
     private void OnDrawGizmos()
@@ -88,5 +88,10 @@ public class PlayerMovement : Vehicle
         Gizmos.color = Color.green;
 
         Gizmos.DrawWireSphere(look_point, 1f);
+    }
+
+    public Vector2 GetLookPoint()
+    {
+        return look_point;
     }
 }
