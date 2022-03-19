@@ -15,6 +15,7 @@ public class PlayerMovement : Vehicle
     private float rotate_speed;
     private Vector2 look_point;
     private Vector2 velocity;
+    private Vector3 velocity_v3;
     #endregion
 
     [SerializeField]
@@ -31,7 +32,7 @@ public class PlayerMovement : Vehicle
 
         base.FixedUpdate();
 
-        CalculateRotation();
+        CalculateRotation_v3();
     }
 
     private void LateUpdate()
@@ -52,6 +53,25 @@ public class PlayerMovement : Vehicle
         }
 
         look_point = Vector2.SmoothDamp(look_point, target, ref velocity, rotate_speed);
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(look_point.y - Util.Vec3_Vec2(transform.position).y, look_point.x - Util.Vec3_Vec2(transform.position).x) * Mathf.Rad2Deg + 90f);
+    }
+
+    protected void CalculateRotation_v3()
+    {
+        Vector3 target = Global.instance.MousePosition_v3;
+        float angle = Mathf.Atan2(target.y - transform.position.y, target.x - transform.position.x);
+        target = transform.position + new Vector3(look_distance * Mathf.Cos(angle), look_distance * Mathf.Sin(angle), 0f);
+
+        if (Vector3.Distance(look_point, transform.position) < look_distance)
+        {
+            float temp = Mathf.Atan2(look_point.y - transform.position.y, look_point.x - transform.position.x);
+            look_point = transform.position + new Vector3(look_distance * Mathf.Cos(temp), look_distance * Mathf.Sin(temp), 0f);
+        }
+
+        //look_point = Vector3.SmoothDamp(look_point, target, ref velocity_v3, rotate_speed);
+        look_point = Vector3.Slerp(look_point, target, Time.deltaTime * 50f);
+
+
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(look_point.y - Util.Vec3_Vec2(transform.position).y, look_point.x - Util.Vec3_Vec2(transform.position).x) * Mathf.Rad2Deg + 90f);
     }
 

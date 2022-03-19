@@ -26,6 +26,7 @@ public abstract class Vehicle : MonoBehaviour
     {
         pos = transform.position;
         rb = gameObject.GetComponentInChildren<Rigidbody2D>();
+        rb.interpolation = RigidbodyInterpolation2D.Interpolate;
     }
 
     protected virtual void Update()
