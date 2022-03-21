@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Global : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Global : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        
     }
 
     public bool Debug_Mode = false;

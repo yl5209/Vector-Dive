@@ -6,14 +6,14 @@ public class CameraFollow : MonoBehaviour
 {
     private Vector3 velocity_folllow;
     private Vector3 velocity_look;
-    
+    public bool look_at;
+
     [SerializeField]
     [Range(10f, 30f)]
     private float height;
     [SerializeField]
     [Range(0.01f, 10f)]
     private float follow_speed;
-
     [SerializeField]
     [Range(0.01f, 10f)]
     private float look_speed;
@@ -37,7 +37,10 @@ public class CameraFollow : MonoBehaviour
     private void LateUpdate()
     {
         FollowPlayer();
-        LookPlayer();
+        if (look_at)
+        {
+            LookPlayer();
+        }
 
     }
 
@@ -57,5 +60,10 @@ public class CameraFollow : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(look_point, 0.5f);
+    }
+
+    public void SetFollowSpeed()
+    {
+
     }
 }

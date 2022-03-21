@@ -6,7 +6,7 @@ using Utility;
 public abstract class Vehicle : MonoBehaviour
 {
     protected Vector2 pos;
-    protected Vector2 dir;
+    public Vector2 dir;
     protected Vector2 acc;
     public Vector2 vel;
 
@@ -68,20 +68,20 @@ public abstract class Vehicle : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + Util.Vec2_Vec3(vel));
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawLine(transform.position, transform.position + Util.Vec2_Vec3(vel));
 
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position, transform.position + Util.Vec2_Vec3(debug_acc));
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawLine(transform.position, transform.position + Util.Vec2_Vec3(debug_acc));
 
-        Gizmos.color = Color.blue;
-        //Gizmos.DrawWireSphere(transform.position, 0.5f);
-        //Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, -turn_angle / 2) * transform.up);
-        //Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, turn_angle / 2) * transform.up);
+    //    Gizmos.color = Color.blue;
+    //    //Gizmos.DrawWireSphere(transform.position, 0.5f);
+    //    //Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, -turn_angle / 2) * transform.up);
+    //    //Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, turn_angle / 2) * transform.up);
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + transform.up * 0.5f);
-    }
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawLine(transform.position, transform.position + transform.up * 0.5f);
+    //}
 }

@@ -7,7 +7,6 @@ public class CameraManager : MonoBehaviour
     public static CameraManager instance;
 
     public Camera main_camera;
-    public Camera mouse_camera;
 
     private void Awake()
     {
