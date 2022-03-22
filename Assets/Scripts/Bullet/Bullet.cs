@@ -7,6 +7,9 @@ public abstract class Bullet : Vehicle
     public int Dmg { get; set; }
     public float Accuracy { get; set; }
     public float Life { get; set; }
+    public DmgType Dmg_type { get; set; }
+    public EntityType Type { get; set; }
+    public float Force { get; set; }
 
     private float life_end;
 

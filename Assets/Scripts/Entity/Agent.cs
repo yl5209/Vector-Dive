@@ -9,6 +9,8 @@ public abstract class Agent : Vehicle
     protected Vector2 target_avoid;
 
     public float turn_speed = 0.5f;
+    [SerializeField]
+    [Range(10,360)]
     public float turn_angle = 200.0f;
 
     protected override void FixedUpdate()
@@ -16,12 +18,6 @@ public abstract class Agent : Vehicle
         CalculateTargets();
 
         CalculateForces();
-
-        debug_acc = acc;
-
-        CalculateVelocity();
-
-        dir = vel.normalized;
 
         CalculateRotation();
 
@@ -36,24 +32,28 @@ public abstract class Agent : Vehicle
             force.Normalize();
             force *= speed;
             force = Vector2.ClampMagnitude(force, speed);
+
         }
         else
         {
+            Debug.Log("Side");
             if (Vector2.Dot(force, transform.right) >= 0)
             {
                 force = Quaternion.Euler(0, 0, -turn_angle / 2) * transform.up;
-                force.Normalize();
-                force *= speed;
             }
             else
             {
                 force = Quaternion.Euler(0, 0, turn_angle / 2) * transform.up;
-                force.Normalize();
-                force *= speed;
             }
+
+            force.Normalize();
+            force *= turn_speed;
+            force = Vector2.ClampMagnitude(force, turn_speed);
         }
 
-        base.ApplyForce(force);
+        debug_acc = force;
+
+        base.ApplyForceRb(force);
     }
 
     protected abstract void CalculateTargets();
@@ -62,12 +62,12 @@ public abstract class Agent : Vehicle
 
     protected Vector2 Seek(Vector2 target_pos)
     {
-        Vector2 desiredVelocity = target_pos - pos;
+        Vector2 desiredVelocity = target_pos - Util.Vec3_Vec2(transform.position);
 
         desiredVelocity.Normalize();
-        desiredVelocity = desiredVelocity * speed;
+        desiredVelocity = desiredVelocity * max_speed;
 
-        Vector2 seekingForce = desiredVelocity - vel;
+        Vector2 seekingForce = desiredVelocity - rb.velocity;
         return seekingForce;
     }
 
@@ -79,7 +79,7 @@ public abstract class Agent : Vehicle
     protected Vector2 Pursue(GameObject target)
     {
         Vehicle v = target.GetComponent<Vehicle>();
-        return Seek(Util.Vec3_Vec2(target.transform.position) + v.vel);
+        return Seek(Util.Vec3_Vec2(target.transform.position) + rb.velocity);
     }
 
     public Vector2 Flee(Vector2 target_pos)
@@ -87,14 +87,31 @@ public abstract class Agent : Vehicle
         Vector2 desiredVelocity = pos - target_pos;
 
         desiredVelocity.Normalize();
-        desiredVelocity = desiredVelocity * speed;
+        desiredVelocity = desiredVelocity * max_speed;
 
-        Vector2 fleeingForce = desiredVelocity - vel;
+        Vector2 fleeingForce = desiredVelocity - rb.velocity;
         return fleeingForce;
     }
 
     public Vector2 Flee(GameObject target)
     {
         return Flee(target.transform.position);
+    }
+
+    private void OnDrawGizmos()
+    {
+        //Gizmos.color = Color.green;
+        //Gizmos.DrawLine(transform.position, transform.position + a);
+
+        //Gizmos.color = Color.yellow;
+        //Gizmos.DrawLine(transform.position, transform.position + b);
+
+        //Gizmos.color = Color.blue;
+        ////Gizmos.DrawWireSphere(transform.position, 0.5f);
+        ////Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, -turn_angle / 2) * transform.up);
+        ////Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, turn_angle / 2) * transform.up);
+
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawLine(transform.position, transform.position + c);
     }
 }

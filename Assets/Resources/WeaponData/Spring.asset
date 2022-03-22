@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 665d5936285c88442be1f1944560a475, type: 3}
   m_Name: Spring
   m_EditorClassIdentifier: 
+  id: 0
   dmg: 1
-  fire_rate: 10
-  multi_shot: 2
+  dmg_type: 0
+  fire_rate: 5
+  multi_shot: 1
   bullet_speed: 30
   bullet_life: 1
+  bullet_force: 40
   accuracy: 95
   charge_time: 10
   charge_speed: 1

@@ -5,21 +5,17 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public WeaponData WeaponData;
-
     public int Dmg { get; set; }
-
+    public DmgType dmg_type { get; set; }
     public float Fire_rate { get; set; }
     public float Multi_shot { get; set; }
-
     public float Bullet_speed { get; set; }
     public float Bullet_life { get; set; }
-
+    public float Bullet_force { get; set; }
     public float Accuracy { get; set; }
-
     public float Charge_time { get; set; }
     public float Charge_speed { get; set; }
     public float Charge_fall_speed { get; set; }
-
     private GameObject Bullet;
 
     private float attack_time;
@@ -33,7 +29,7 @@ public class Weapon : MonoBehaviour
         Init();
 
         cd = 1f / Fire_rate;
-        Debug.Log(cd);
+
         attack_time = Time.time;
         acc = 100f - Accuracy;
     }
@@ -58,7 +54,6 @@ public class Weapon : MonoBehaviour
             if (Time.time > attack_time)
             {
                 Attack();
-                Debug.Log(Time.time);
                 attack_time = Time.time + cd;
             }
 
@@ -77,10 +72,12 @@ public class Weapon : MonoBehaviour
     private void Init()
     {
         Dmg = WeaponData.dmg;
+        dmg_type = WeaponData.dmg_type;
         Fire_rate = WeaponData.fire_rate;
         Multi_shot = WeaponData.multi_shot;
         Bullet_speed = WeaponData.bullet_speed;
         Bullet_life = WeaponData.bullet_life;
+        Bullet_force = WeaponData.bullet_force;
         Accuracy = WeaponData.accuracy;
         Charge_time = WeaponData.charge_time;
         Charge_speed = WeaponData.charge_speed;
@@ -90,36 +87,37 @@ public class Weapon : MonoBehaviour
 
     protected virtual void Attack()
     {
-        Bullet b;
-
         if (Multi_shot == 1)
         {
-            b = Instantiate(Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
-            b.Accuracy = acc;
-            b.Dmg = Dmg;
-            b.speed = Bullet_speed;
-            b.Life = Bullet_life;
+            InstantiateBullet();
         }
         else
         {
             for(int i = 0; i < (int)Multi_shot; i++)
             {
-                b = Instantiate(Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
-                b.Accuracy = acc;
-                b.Dmg = Dmg;
-                b.speed = Bullet_speed;
-                b.Life = Bullet_life;
+                InstantiateBullet();
             }
 
             if(Random.Range(0.0f, 1.0f) < Multi_shot % 1.0f)
             {
-                b = Instantiate(Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
-                b.Accuracy = acc;
-                b.Dmg = Dmg;
-                b.speed = Bullet_speed;
-                b.Life = Bullet_life;
+                InstantiateBullet();
             }
         }
+    }
+
+    private Bullet InstantiateBullet()
+    {
+        Bullet b;
+        b = Instantiate(Bullet, transform.position, Quaternion.identity).GetComponent<Bullet>();
+        b.Accuracy = acc;
+        b.Dmg = Dmg;
+        b.speed = Bullet_speed;
+        b.Life = Bullet_life;
+        b.Dmg_type = dmg_type;
+        b.Type = EntityType.Player;
+        b.Force = Bullet_force;
+
+        return b;
     }
 
     protected virtual void ChargeAttack()

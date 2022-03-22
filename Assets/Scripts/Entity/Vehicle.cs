@@ -27,6 +27,10 @@ public abstract class Vehicle : MonoBehaviour
         pos = transform.position;
         rb = gameObject.GetComponentInChildren<Rigidbody2D>();
         rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+        if (!follow_vel)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 
     protected virtual void Update()
@@ -36,12 +40,7 @@ public abstract class Vehicle : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        //rb.velocity = vel;
-
-        //pos = transform.position;
-
-        //acc = Vector2.zero;
-
+        dir = rb.velocity.normalized;
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, max_speed);
     }
 

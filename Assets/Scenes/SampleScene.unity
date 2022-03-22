@@ -6517,7 +6517,7 @@ GameObject:
   m_Component:
   - component: {fileID: 305332507}
   - component: {fileID: 305332508}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Dynamic Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11090,7 +11090,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.6886792, g: 0.54229087, b: 0.36707902, a: 0}
+  m_BackGroundColor: {r: 0.4056604, g: 0.29304436, b: 0.16264686, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -14186,7 +14186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 650685817}
   - component: {fileID: 650685818}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16878,7 +16878,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 03b0310397f3a0041b1c8b8bf9cf8f38, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a5bc23827279c0b4cb659e4a6ef718a5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -18440,7 +18440,8 @@ GameObject:
   m_Component:
   - component: {fileID: 845842851}
   - component: {fileID: 845842850}
-  m_Layer: 0
+  - component: {fileID: 845842852}
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18466,7 +18467,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cdccbb7916a6abb4888c6c4c7944e893, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18512,6 +18513,21 @@ Transform:
   m_Father: {fileID: 1220383499}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &845842852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845842849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdde5d8f5e7278748a76cb033dc8b868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drop: 20
+  glow: 2
+  glow_time: 0.15
 --- !u!1 &850946017
 GameObject:
   m_ObjectHideFlags: 0
@@ -21498,7 +21514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 976471846}
   - component: {fileID: 976471847}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21531,7 +21547,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 200
+  m_Intensity: 60
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -26088,8 +26104,10 @@ GameObject:
   - component: {fileID: 1220383499}
   - component: {fileID: 1220383502}
   - component: {fileID: 1220383501}
-  m_Layer: 0
-  m_Name: Entity
+  - component: {fileID: 1220383500}
+  - component: {fileID: 1220383503}
+  m_Layer: 7
+  m_Name: Enemy
   m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26102,14 +26120,33 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1220383498}
-  m_LocalRotation: {x: 0, y: 0, z: 0.24446127, w: 0.9696591}
-  m_LocalPosition: {x: 2.85, y: -4.52, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.01, y: 7.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 845842851}
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 28.3}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1220383500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220383498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaa7d0c58f3583d489059b5e46a941d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dir: {x: 0, y: 0}
+  vel: {x: 0, y: 0}
+  speed: 20
+  follow_vel: 0
+  max_speed: 5
+  turn_speed: 20
+  turn_angle: 360
 --- !u!61 &1220383501
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26157,6 +26194,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1220383503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220383498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61a7d39dc7c522f40a38f205666ccff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 10000
+  def: 0
+  type: 1
 --- !u!1 &1220809075
 GameObject:
   m_ObjectHideFlags: 0
@@ -26840,7 +26892,7 @@ GameObject:
   - component: {fileID: 1250275647}
   - component: {fileID: 1250275649}
   - component: {fileID: 1250275648}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35451,7 +35503,7 @@ GameObject:
   - component: {fileID: 1658650908}
   - component: {fileID: 1658650907}
   - component: {fileID: 1658650911}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41940,7 +41992,7 @@ GameObject:
   - component: {fileID: 1954876274}
   - component: {fileID: 1954876277}
   - component: {fileID: 1954876273}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Entity
   m_Icon: {fileID: 0}
@@ -42033,6 +42085,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36c6604e1962b5a4ba07d8e21fffd4ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
+  def: 0
+  type: 0
   PlayerMovement: {fileID: 0}
 --- !u!1 &1956871815
 GameObject:
