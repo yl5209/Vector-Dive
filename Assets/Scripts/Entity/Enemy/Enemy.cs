@@ -16,10 +16,7 @@ public class Enemy : Entity
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
 
-    }
 
     public override void ApplyDamage(int _dmg)
     {
@@ -27,13 +24,14 @@ public class Enemy : Entity
         GetComponentInChildren<SpriteGlow>().Glow();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag == "Bullet")
         {
             Bullet b = collision.transform.gameObject.GetComponent<Bullet>();
             if (b.Dmg_type == DmgType.All)
             {
+                b.Hit();
                 ApplyDamage(b.Dmg);
                 GetComponent<Vehicle>().ApplyForceRb(b.dir * b.Force);
             }
@@ -41,6 +39,7 @@ public class Enemy : Entity
             {
                 if (b.Type != type)
                 {
+                    b.Hit();
                     ApplyDamage(b.Dmg);
                     GetComponent<Vehicle>().ApplyForceRb(b.dir * b.Force);
                 }
@@ -48,4 +47,28 @@ public class Enemy : Entity
 
         }
     }
+
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (collision.transform.tag == "Bullet")
+    //    {
+    //        Bullet b = collision.transform.gameObject.GetComponent<Bullet>();
+    //        if (b.Dmg_type == DmgType.All)
+    //        {
+    //            b.Hit();
+    //            ApplyDamage(b.Dmg);
+    //            GetComponent<Vehicle>().ApplyForceRb(b.dir * b.Force);
+    //        }
+    //        else
+    //        {
+    //            if (b.Type != type)
+    //            {
+    //                b.Hit();
+    //                ApplyDamage(b.Dmg);
+    //                GetComponent<Vehicle>().ApplyForceRb(b.dir * b.Force);
+    //            }
+    //        }
+
+    //    }
+    //}
 }

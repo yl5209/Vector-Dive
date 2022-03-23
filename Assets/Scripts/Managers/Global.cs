@@ -21,12 +21,12 @@ public class Global : MonoBehaviour
 
     private void Update()
     {
-        MousePosition = CameraManager.instance.main_camera.ScreenToWorldPoint(Input.mousePosition);
+        MousePosition = CameraManager.instance.cursor_camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
     }
 
     private void LateUpdate()
     {
-        MousePosition_v3 = GetWorldPositionOnPlane(Utility.Util.Vec2_Vec3(Input.mousePosition), 0f);
+        MousePosition_v3 = GetWorldPositionOnPlane(Input.mousePosition, 0);
     }
 
     public Vector3 GetWorldPositionOnPlane(Vector3 screenPosition, float z)

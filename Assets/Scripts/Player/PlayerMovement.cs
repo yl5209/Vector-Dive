@@ -13,6 +13,9 @@ public class PlayerMovement : Vehicle
     [SerializeField]
     [Range(0.01f, 0.3f)]
     private float rotate_speed;
+    [SerializeField]
+    [Range(10f, 100f)]
+    private float rotate_slerp_speed = 70;
     private Vector2 look_point;
     private Vector2 velocity;
     private Vector3 velocity_v3;
@@ -69,8 +72,7 @@ public class PlayerMovement : Vehicle
         }
 
         //look_point = Vector3.SmoothDamp(look_point, target, ref velocity_v3, rotate_speed);
-        look_point = Vector3.Slerp(look_point, target, Time.deltaTime * 50f);
-
+        look_point = Vector3.Slerp(look_point, target, Time.deltaTime * rotate_slerp_speed);
 
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(look_point.y - Util.Vec3_Vec2(transform.position).y, look_point.x - Util.Vec3_Vec2(transform.position).x) * Mathf.Rad2Deg + 90f);
     }

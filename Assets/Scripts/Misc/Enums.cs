@@ -11,5 +11,6 @@ public enum EntityType
 public enum DmgType
 {
     Opposite,
-    All
+    All,
+    None
 }

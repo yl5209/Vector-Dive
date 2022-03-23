@@ -5,9 +5,10 @@ using UnityEngine;
 public abstract class Bullet : Vehicle
 {
     public int Dmg { get; set; }
+    public DmgType Dmg_type { get; set; }
     public float Accuracy { get; set; }
     public float Life { get; set; }
-    public DmgType Dmg_type { get; set; }
+    public float Life_count { get; set; }
     public EntityType Type { get; set; }
     public float Force { get; set; }
 
@@ -24,6 +25,16 @@ public abstract class Bullet : Vehicle
     protected override void Update()
     {
         if(Time.time > life_end)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void Hit()
+    {
+        Life_count -= 1;
+
+        if(Life_count < 0)
         {
             Destroy(gameObject);
         }

@@ -15,13 +15,18 @@ MonoBehaviour:
   id: 0
   dmg: 1
   dmg_type: 0
-  fire_rate: 5
-  multi_shot: 1
-  bullet_speed: 30
+  fire_rate: 0.5
+  multi_shot: 3
+  bullet_speed: 70
+  bullet_speed_offet: 0
   bullet_life: 1
-  bullet_force: 40
-  accuracy: 95
+  bullet_force: 200
+  pierce: 1
+  burst: 5
+  burst_rate: 50
+  accuracy: 50
   charge_time: 10
   charge_speed: 1
   charge_fall_speed: 1
   bullet: {fileID: 4828029125203758539, guid: 646bb5072e36a38468ce55faf2b66ed0, type: 3}
+  equal_division: 0
