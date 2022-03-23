@@ -15,16 +15,16 @@ MonoBehaviour:
   id: 0
   dmg: 1
   dmg_type: 0
-  fire_rate: 0.5
-  multi_shot: 3
+  fire_rate: 2
+  multi_shot: 1
   bullet_speed: 70
   bullet_speed_offet: 0
   bullet_life: 1
   bullet_force: 200
   pierce: 1
-  burst: 5
+  burst: 0
   burst_rate: 50
-  accuracy: 50
+  accuracy: 82.7
   charge_time: 10
   charge_speed: 1
   charge_fall_speed: 1

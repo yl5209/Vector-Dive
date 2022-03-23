@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utility;
 
 public class Weapon : MonoBehaviour
 {
@@ -28,7 +29,10 @@ public class Weapon : MonoBehaviour
     private float charge;
     private float acc;
     private int burst_count;
+
     private int angle_count;
+    private int angle_counter;
+    private float division_angle;
 
     // Start is called before the first frame update
     void Start()
@@ -37,8 +41,15 @@ public class Weapon : MonoBehaviour
 
         attack_time = Time.time;
         cd = 1f / Fire_rate;
-        acc = (100f - Accuracy) / 100f * 360f;
+        acc = (100f - Accuracy) / 100f * 180f;
         burst_count = Burst;
+
+        if (Equal_division)
+        {
+            angle_count = Multi_shot - 1;
+            angle_counter = 0;
+            division_angle = acc / (angle_count - 1);
+        }
     }
 
     // Update is called once per frame
@@ -149,7 +160,7 @@ public class Weapon : MonoBehaviour
 
         b.Life_count = Pierce;
 
-        b.Accuracy = acc;
+        b.dir = CalculateBulletDirection();
         b.Type = EntityType.Player;
 
         return b;
@@ -158,6 +169,34 @@ public class Weapon : MonoBehaviour
     protected virtual void ChargeAttack()
     {
 
+    }
+
+    private Vector3 CalculateBulletDirection()
+    {
+        Vector3 vector3;
+
+        if (Equal_division)
+        {
+            if (angle_counter > angle_count)
+                angle_counter = 0;
+
+            if (Multi_shot % 2 == 1)
+            {
+                vector3 = ((PlayerWeapon.instance.transform.position + Quaternion.Euler(0, 0, -(angle_count / 2) * division_angle + angle_counter * division_angle) * PlayerWeapon.instance.transform.up) - PlayerWeapon.instance.transform.position).normalized;
+            }
+            else
+            {
+                vector3 = ((PlayerWeapon.instance.transform.position + Quaternion.Euler(0, 0, -(angle_count / 2f) * division_angle + angle_counter * division_angle) * PlayerWeapon.instance.transform.up) - PlayerWeapon.instance.transform.position).normalized;
+            }
+            angle_counter++;
+        }
+        else
+        {
+            float f = Util.Gaussian(0f, acc / 4f) * (Random.Range(0, 2) * 2 - 1);
+            vector3 = ((PlayerWeapon.instance.transform.position + Quaternion.Euler(0, 0, f) * PlayerWeapon.instance.transform.up) - PlayerWeapon.instance.transform.position).normalized;
+        }
+
+        return vector3;
     }
 
     private void OnDrawGizmos()

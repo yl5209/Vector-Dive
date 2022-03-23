@@ -14,3 +14,12 @@ public enum DmgType
     All,
     None
 }
+
+public enum GameState
+{
+    Mainmenu,
+    Combat,
+    Upgrade,
+    Victory,
+    Defeat
+}

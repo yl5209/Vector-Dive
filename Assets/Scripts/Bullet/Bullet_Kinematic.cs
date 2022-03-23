@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utility;
 
 public class Bullet_Kinematic : Bullet
 {
@@ -19,7 +20,6 @@ public class Bullet_Kinematic : Bullet
 
     protected override void CalculateVelocity()
     {
-        dir = ((PlayerWeapon.instance.transform.position + Quaternion.Euler(0, 0, Random.Range(-Accuracy / 2f, Accuracy / 2f)) * PlayerWeapon.instance.transform.up) - PlayerWeapon.instance.transform.position).normalized;
         vel = dir * speed;
     }
 
