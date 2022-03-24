@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _MainmenuPanel, _UpgradePanel;
+    [SerializeField] private GameObject _MainmenuPanel, _UpgradePanel, _ChargePanel;
 
     private void Awake()
     {

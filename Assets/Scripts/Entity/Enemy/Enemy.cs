@@ -1,22 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Enemy : Entity
 {
-    // Start is called before the first frame update
+    public int dive_point = 1;
+
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
 
     }
-
-
 
     public override void ApplyDamage(int _dmg)
     {
@@ -46,6 +45,12 @@ public class Enemy : Entity
             }
 
         }
+    }
+
+    public override void Death()
+    {
+        ChargePanel.instance.AddCharge(dive_point);
+        base.Death();
     }
 
     //private void OnTriggerStay2D(Collider2D collision)

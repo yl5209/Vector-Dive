@@ -1,18 +1,98 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Threading.Tasks;
 
 public class EntityManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static EntityManager instance;
+
+    public static event Action OnEnemyDeath;
+    public static event Action OnEnemySpawn;
+    public static event Action WaveClear;
+
+    //public int max_enemies;
+    public int active_enemies;
+
+    public float spawn_time;
+    public float group_radius;
+
+    public GameObject spawner_prefab;
+
+    private Vector3 group_spawn_point;
+    private bool isSpawning, spawn_flag;
+    private float spawn_timer;
+
+    private void Awake()
     {
-        
+        instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        //max_enemies = 0;
+        active_enemies = 0;
+
+        OnEnemySpawn += () => { active_enemies++; };
+        OnEnemyDeath += () => { 
+            active_enemies--;
+            if (!isSpawning)
+                WaveClear?.Invoke();
+        };
+    }
+
+    private void Update()
+    {
+        if(Time.time > spawn_timer && spawn_flag)
+        {
+            spawn_flag = !spawn_flag;
+            WaveClear?.Invoke();
+        }
+    }
+
+    public async void SpawnWave(Wave wave)
+    {
+        int num = 0;
+        GameObject obj;
+
+        group_spawn_point = new Vector3(UnityEngine.Random.Range(-Edge.radius, Edge.radius), UnityEngine.Random.Range(-Edge.radius, Edge.radius), 0);
+        isSpawning = true;
+        spawn_timer = Time.time + wave.time;
+        spawn_flag = true;
+
+        while (num < wave.number)
+        {
+            var end = Time.time + spawn_time;
+
+            while(Time.time < end)
+            {
+                await Task.Yield();
+            }
+
+            obj = Instantiate(spawner_prefab, CalculateSpawnPosition(wave.type), Quaternion.identity);
+            obj.GetComponent<EnemySpawner>().prefab = wave.enemy;
+
+            await Task.Yield();
+        }
+
+        isSpawning = false;
+    }
+
+    public Vector3 CalculateSpawnPosition(WaveType type)
+    {
+        Vector3 pos = Vector3.zero;
+
+        switch (type)
+        {
+            case WaveType.Group:
+                pos = new Vector3(group_spawn_point.x + UnityEngine.Random.Range(-group_radius, group_radius), group_spawn_point.y + UnityEngine.Random.Range(-group_radius, group_radius), 0);
+                break;
+            case WaveType.Random:
+                pos = new Vector3(UnityEngine.Random.Range(-Edge.radius, Edge.radius), UnityEngine.Random.Range(-Edge.radius, Edge.radius), 0);
+                break;
+        }
+
+        return pos;
     }
 }

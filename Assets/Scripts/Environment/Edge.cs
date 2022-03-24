@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Mathematics;
+using DG.Tweening;
 
 public class Edge : MonoBehaviour
 {
+    public static Edge instance;
+
     public Vector2 center = Vector2.zero;
-    public float radius = 5f;
+
+    public static float radius = 15f;
     [SerializeField]
     [Range(36f, 360f)]
     public int density = 36;
@@ -14,6 +18,7 @@ public class Edge : MonoBehaviour
     [SerializeField]
     [Range(0.1f, 5f)]
     public float speed = 3f;
+    public float transition_time;
 
     private List<Vector3> Nodes_v3;
     private List<Vector2> Nodes_v2;
@@ -27,6 +32,11 @@ public class Edge : MonoBehaviour
 
     private float vel;
     private float offset;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -92,5 +102,16 @@ public class Edge : MonoBehaviour
         lineRenderer_static.SetPositions(Nodes_v3.ToArray());
         lineRenderer_dynamic.SetPositions(Nodes_v3_dynamic.ToArray());
         edgeCollider.SetPoints(Nodes_v2);
+    }
+
+
+    public void SetRadius(float r)
+    {
+        DOVirtual.Float(radius, r, transition_time, (x) => { radius = x; }).SetEase(Ease.OutBack);
+    }
+
+    public void SetRadius(float r, float time)
+    {
+        DOVirtual.Float(radius, r, time, (x) => { radius = x; }).SetEase(Ease.OutBack);
     }
 }

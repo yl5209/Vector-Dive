@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Enemy
-  m_Shader: {fileID: -6465566751694194690, guid: 5698270f9d2ed9840835ee65e0143b3c, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 1f70abd458ee6bd4b92e117388f1132c, type: 3}
   m_ShaderKeywords: _SPECULAR_SETUP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_bbe285751bd7467d99e392339edb399b:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -76,6 +80,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_3dcacbf21b36429d9989831cc28772d8: 1
     - _Alpha: 1
     - _AlphaClip: 0
     - _Blend: 0
@@ -105,6 +110,7 @@ Material:
     - _WorkflowMode: 0
     - _ZWrite: 1
     m_Colors:
+    - Color_e76ba849be2a4e65acd920c5f568c3ff: {r: 1, g: 1, b: 1, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 3.018868, g: 0.2990388, b: 0.2990388, a: 1}
     - _Color_1: {r: 23.968628, g: 23.968628, b: 23.968628, a: 0}

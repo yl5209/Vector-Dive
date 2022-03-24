@@ -5,28 +5,24 @@ using UnityEngine;
 [System.Serializable]
 public class Wave
 {
-    public List<Enemy> enemies;
+    public WaveType type;
+    public GameObject enemy;
     public float time;
+    public int number;
+    public float radius;
 }
 
 [System.Serializable]
 public class SubLevel
 {
-    
+    public List<Wave> waves;
+    private int wave_counter;
 }
 
+[CreateAssetMenu(fileName = "New Level", menuName = "Level")]
 [System.Serializable]
-public class Level : MonoBehaviour
+public class Level : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public List<SubLevel> subLevels;
+    public int level_counter;
 }

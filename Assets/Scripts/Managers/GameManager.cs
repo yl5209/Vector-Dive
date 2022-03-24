@@ -37,10 +37,15 @@ public class GameManager : MonoBehaviour
             case GameState.Mainmenu:
                 break;
             case GameState.Combat:
+                Edge.instance.SetRadius(25f, 2f);
+                break;
+            case GameState.BossFight:
                 break;
             case GameState.Upgrade:
                 break;
             case GameState.Victory:
+                break;
+            case GameState.Defeat:
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public enum EntityType
 {
     Player,
@@ -15,11 +16,21 @@ public enum DmgType
     None
 }
 
+[SerializeField]
 public enum GameState
 {
     Mainmenu,
     Combat,
+    BossFight,
     Upgrade,
     Victory,
     Defeat
+}
+
+public enum WaveType
+{
+    Group,
+    Random,
+    Point,
+    Boss
 }

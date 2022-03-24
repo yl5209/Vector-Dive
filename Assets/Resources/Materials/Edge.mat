@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Edge
-  m_Shader: {fileID: -6465566751694194690, guid: 5698270f9d2ed9840835ee65e0143b3c, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 1f70abd458ee6bd4b92e117388f1132c, type: 3}
   m_ShaderKeywords: _SPECULAR_SETUP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,6 +19,18 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_04ff47482c954287b90f0ab64f149493:
+        m_Texture: {fileID: 2800000, guid: c8754745d9ed1904fa02ab02c3c8e643, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_4b23cc314dee43f7839457a7e6f4c0cd:
+        m_Texture: {fileID: 2800000, guid: c8754745d9ed1904fa02ab02c3c8e643, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_bbe285751bd7467d99e392339edb399b:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -76,6 +88,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_1b14440cc6b949d090b047864736424d: 0.2
+    - Vector1_287ff65bf8c94df3a2391bc278c9486a: 0.2
+    - Vector1_3dcacbf21b36429d9989831cc28772d8: 1
     - _Alpha: 1
     - _AlphaClip: 0
     - _Blend: 0
@@ -105,6 +120,8 @@ Material:
     - _WorkflowMode: 0
     - _ZWrite: 1
     m_Colors:
+    - Color_afd37962255f47c7a2930fc2464e51fc: {r: 1, g: 1, b: 1, a: 0}
+    - Color_e76ba849be2a4e65acd920c5f568c3ff: {r: 1, g: 1, b: 1, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color_1: {r: 64, g: 64, b: 64, a: 0}
