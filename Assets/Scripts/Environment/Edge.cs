@@ -18,7 +18,7 @@ public class Edge : MonoBehaviour
     [SerializeField]
     [Range(0.1f, 5f)]
     public float speed = 3f;
-    public float transition_time;
+    public static float transition_time;
 
     private List<Vector3> Nodes_v3;
     private List<Vector2> Nodes_v2;
@@ -105,12 +105,12 @@ public class Edge : MonoBehaviour
     }
 
 
-    public void SetRadius(float r)
+    public static void SetRadius(float r)
     {
         DOVirtual.Float(radius, r, transition_time, (x) => { radius = x; }).SetEase(Ease.OutBack);
     }
 
-    public void SetRadius(float r, float time)
+    public static void SetRadius(float r, float time)
     {
         DOVirtual.Float(radius, r, time, (x) => { radius = x; }).SetEase(Ease.OutBack);
     }

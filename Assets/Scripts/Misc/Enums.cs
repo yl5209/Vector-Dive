@@ -20,6 +20,10 @@ public enum DmgType
 public enum GameState
 {
     Mainmenu,
+    Option,
+    Tutorial,
+    ModeSelection,
+    TrackSelection,
     Combat,
     BossFight,
     Upgrade,

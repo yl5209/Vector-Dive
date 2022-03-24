@@ -13,15 +13,13 @@ public class Global : MonoBehaviour
     private void Awake()
     {
         instance = this;
-
-        
     }
 
     public bool Debug_Mode = false;
 
     private void Update()
     {
-        MousePosition = CameraManager.instance.cursor_camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
+        MousePosition = CameraManager.cursor_camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
     }
 
     private void LateUpdate()
@@ -31,7 +29,7 @@ public class Global : MonoBehaviour
 
     public Vector3 GetWorldPositionOnPlane(Vector3 screenPosition, float z)
     {
-        Ray ray = CameraManager.instance.main_camera.ScreenPointToRay(screenPosition);
+        Ray ray = CameraManager.main_camera.ScreenPointToRay(screenPosition);
         Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, z));
         float distance;
         xy.Raycast(ray, out distance);

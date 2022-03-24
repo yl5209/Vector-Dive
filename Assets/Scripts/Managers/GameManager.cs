@@ -25,7 +25,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public void UpdateGameState(string newState)
+    {
+        UpdateGameState((GameState)System.Enum.Parse(typeof(GameState), newState));
     }
 
     public void UpdateGameState(GameState newState)
@@ -36,8 +41,16 @@ public class GameManager : MonoBehaviour
         {
             case GameState.Mainmenu:
                 break;
+            case GameState.Option:
+                break;
+            case GameState.Tutorial:
+                break;
+            case GameState.ModeSelection:
+                break;
+            case GameState.TrackSelection:
+                break;
             case GameState.Combat:
-                Edge.instance.SetRadius(25f, 2f);
+                Edge.SetRadius(25f, 2f);
                 break;
             case GameState.BossFight:
                 break;
@@ -52,5 +65,10 @@ public class GameManager : MonoBehaviour
         }
 
         OnGameStateChanged?.Invoke(newState);
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 }
