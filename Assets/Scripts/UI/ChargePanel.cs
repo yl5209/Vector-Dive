@@ -19,6 +19,11 @@ public class ChargePanel : MonoBehaviour
 
     public static event Action FullCharge;
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

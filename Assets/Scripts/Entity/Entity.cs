@@ -52,7 +52,7 @@ public abstract class Entity : MonoBehaviour
         if (collision.transform.tag == "Bullet")
         {
             Bullet b = collision.transform.gameObject.GetComponent<Bullet>();
-            Debug.Log(b.dir * b.Force);
+            //Debug.Log(b.dir * b.Force);
             if (b.Dmg_type == DmgType.All)
             {
                 ApplyDamage(b.Dmg);

@@ -19,7 +19,7 @@ public abstract class Vehicle : MonoBehaviour
     protected Vector2 debug_acc;
 
     [SerializeField]
-    [Range(1f, 30f)]
+    [Range(1f, 100f)]
     public float max_speed = 5;
 
     protected virtual void Start()

@@ -88,7 +88,7 @@ MonoBehaviour:
   vel: {x: 0, y: 0}
   speed: 1
   follow_vel: 0
-  max_speed: 30
+  max_speed: 100
 --- !u!1 &4828029126058705301
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4581131680698862168
 Transform:
   m_ObjectHideFlags: 0

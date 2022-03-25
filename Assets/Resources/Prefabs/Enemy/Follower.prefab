@@ -120,9 +120,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a7d39dc7c522f40a38f205666ccff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10000
+  hp: 10
   def: 0
   type: 1
+  dive_point: 1
 --- !u!1 &1898403030140068245
 GameObject:
   m_ObjectHideFlags: 0

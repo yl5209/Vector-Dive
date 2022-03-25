@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         particleController = GetComponentInChildren<ParticleController>();
-        //Spawn();
+        Spawn();
     }
 
     // Update is called once per frame

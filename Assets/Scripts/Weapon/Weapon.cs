@@ -84,9 +84,6 @@ public class Weapon : MonoBehaviour
                 charge = 0;
             }
         }
-
-        Debug.Log(cd);
-
     }
 
     private void Init()
@@ -154,7 +151,7 @@ public class Weapon : MonoBehaviour
         b.Dmg = Dmg;
         b.Dmg_type = dmg_type;
 
-        b.speed = Bullet_speed;
+        b.speed = Bullet_speed + Random.Range(-Bullet_speed_offset, Bullet_speed_offset);
         b.Life = Bullet_life;
         b.Force = Bullet_force;
 

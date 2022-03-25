@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _MainmenuPanel, _UpgradePanel, _ChargePanel, _OptionPanel, _TutorialPanel, _ModePanel;
+    [SerializeField] private GameObject _MainmenuPanel, _UpgradePanel, _ChargePanel, _OptionPanel, _TutorialPanel, _ModePanel, _LevelSelectionPanel;
 
     private void Awake()
     {
@@ -19,9 +19,12 @@ public class MenuManager : MonoBehaviour
     private void GameManagerOnGameStateChanged(GameState state)
     {
         _MainmenuPanel.SetActive(state == GameState.Mainmenu);
+        _UpgradePanel.SetActive(state == GameState.Upgrade);
         _OptionPanel.SetActive(state == GameState.Option);
         _TutorialPanel.SetActive(state == GameState.Tutorial);
         _ModePanel.SetActive(state == GameState.ModeSelection);
+        _ChargePanel.SetActive(state == GameState.Combat);
+        _LevelSelectionPanel.SetActive(state == GameState.TrackSelection);
     }
 
     // Start is called before the first frame update

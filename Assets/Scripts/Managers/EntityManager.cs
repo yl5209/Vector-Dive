@@ -11,6 +11,7 @@ public class EntityManager : MonoBehaviour
     public static event Action OnEnemyDeath;
     public static event Action OnEnemySpawn;
     public static event Action WaveClear;
+    public static event Action OnWaveTimeEnd;
 
     //public int max_enemies;
     public int active_enemies;
@@ -40,6 +41,9 @@ public class EntityManager : MonoBehaviour
             if (!isSpawning)
                 WaveClear?.Invoke();
         };
+
+        WaveClear += SpawnWave;
+        OnWaveTimeEnd += SpawnWave;
     }
 
     private void Update()
@@ -47,11 +51,21 @@ public class EntityManager : MonoBehaviour
         if(Time.time > spawn_timer && spawn_flag)
         {
             spawn_flag = !spawn_flag;
-            WaveClear?.Invoke();
+            OnWaveTimeEnd?.Invoke();
         }
     }
 
-    public async void SpawnWave(Wave wave)
+    public void StopSpawn()
+    {
+        StopAllCoroutines();
+    }
+
+    public void SpawnWave()
+    {
+        StartCoroutine(SpawnWave(LevelManager.current_sublevel.GetCurrentWave()));
+    }
+
+    public IEnumerator SpawnWave(Wave wave)
     {
         int num = 0;
         GameObject obj;
@@ -67,13 +81,13 @@ public class EntityManager : MonoBehaviour
 
             while(Time.time < end)
             {
-                await Task.Yield();
+                yield return null;
             }
 
             obj = Instantiate(spawner_prefab, CalculateSpawnPosition(wave.type), Quaternion.identity);
             obj.GetComponent<EnemySpawner>().prefab = wave.enemy;
 
-            await Task.Yield();
+            yield return null;
         }
 
         isSpawning = false;

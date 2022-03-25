@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afe9b8a3f48052548a162e9cc84750d8, type: 3}
-  m_Name: New Level
+  m_Name: Level 1
   m_EditorClassIdentifier: 
+  Name: Level 1
   subLevels:
   - waves:
     - type: 0
@@ -39,4 +40,3 @@ MonoBehaviour:
       time: 10
       number: 20
       radius: 3
-  level_counter: 0

@@ -12,6 +12,7 @@ public class CameraManager : MonoBehaviour
     public static Camera main_camera;
     public static Camera cursor_camera;
 
+    public float _transition_time;
     public static float transiton_time;
 
     private void Awake()
@@ -19,6 +20,7 @@ public class CameraManager : MonoBehaviour
         instance = this;
         main_camera = _main_camera;
         cursor_camera = _cursor_camera;
+        transiton_time = _transition_time;
     }
 
     // Start is called before the first frame update
@@ -35,11 +37,11 @@ public class CameraManager : MonoBehaviour
 
     public static void ChangeColor()
     {
-        main_camera.DOColor(Random.ColorHSV(0.0f, 1.0f, 0.3f, 0.7f, 0.5f, 0.8f), transiton_time);
+        main_camera.DOColor(Random.ColorHSV(0.0f, 1.0f, 0.3f, 0.7f, 0.3f, 0.7f), transiton_time).SetEase(Ease.OutCirc);
     }
 
     public static void ChangeColor(Color color)
     {
-        main_camera.DOColor(color, transiton_time);
+        main_camera.DOColor(color, transiton_time).SetEase(Ease.OutCirc);
     }
 }
