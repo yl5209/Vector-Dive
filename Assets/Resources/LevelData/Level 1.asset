@@ -15,29 +15,29 @@ MonoBehaviour:
   Name: Level 1
   subLevels:
   - waves:
-    - type: 0
-      enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
-      time: 10
-      number: 5
-      radius: 3
-    - type: 0
-      enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
-      time: 10
-      number: 5
-      radius: 3
-    - type: 0
-      enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
-      time: 10
-      number: 5
-      radius: 3
-    - type: 0
-      enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
-      time: 10
-      number: 5
-      radius: 3
     - type: 1
       enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
-      time: 10
+      time: 8
+      number: 10
+      radius: 4
+    - type: 0
+      enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
+      time: 8
+      number: 10
+      radius: 4
+    - type: 1
+      enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
+      time: 8
       number: 5
-      radius: 3
+      radius: 4
+    - type: 0
+      enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
+      time: 8
+      number: 10
+      radius: 4
+    - type: 1
+      enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
+      time: 8
+      number: 10
+      radius: 4
     charge: 0

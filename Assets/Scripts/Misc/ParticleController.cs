@@ -6,7 +6,9 @@ public class ParticleController : MonoBehaviour
 {
     public List<ParticleSystem> particles;
     public bool playOnStart = true;
-    //public bool destoryOnEnd = true;
+    public bool destoryOnEnd = true;
+
+    public float end_time;
 
     public void Play()
     {
@@ -20,9 +22,16 @@ public class ParticleController : MonoBehaviour
     {
         if (playOnStart)
             Play();
+
+        end_time = particles[0].main.duration + Time.time;
+        Debug.Log(particles[0].main.duration);
     }
 
     private void Update()
     {
+        if(Time.time > end_time)
+        {
+            Destroy(gameObject);
+        }
     }
 }
