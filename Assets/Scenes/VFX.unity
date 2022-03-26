@@ -1641,7 +1641,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec7f5c95669a9e45b367618b9887699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons: []
 --- !u!1 &1279505770
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,6 +2136,8 @@ MonoBehaviour:
   _TutorialPanel: {fileID: 369660623}
   _ModePanel: {fileID: 6003280770468137359}
   _LevelSelectionPanel: {fileID: 417151765}
+  _VictoryPanel: {fileID: 0}
+  _DefeatPanel: {fileID: 0}
 --- !u!114 &1799708311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2506,6 +2507,7 @@ MonoBehaviour:
   hp: 0
   def: 0
   type: 0
+  death_vfx: {fileID: 0}
   PlayerMovement: {fileID: 0}
 --- !u!1 &1958059661 stripped
 GameObject:

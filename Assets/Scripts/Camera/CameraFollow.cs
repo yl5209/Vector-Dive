@@ -66,4 +66,10 @@ public class CameraFollow : MonoBehaviour
     {
 
     }
+
+    public void ResetVelocity()
+    {
+        velocity_folllow = Vector3.zero;
+        velocity_look = Vector3.zero;
+    }
 }

@@ -44,4 +44,14 @@ public class CameraManager : MonoBehaviour
     {
         main_camera.DOColor(color, transiton_time).SetEase(Ease.OutCirc);
     }
+
+    public static void Dive()
+    {
+        main_camera.GetComponent<CameraDive>().DoDive();
+    }
+
+    public static bool CheckDive()
+    {
+        return main_camera.GetComponent<CameraDive>().IsDiving;
+    }
 }

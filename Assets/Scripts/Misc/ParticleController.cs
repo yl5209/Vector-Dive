@@ -24,7 +24,6 @@ public class ParticleController : MonoBehaviour
             Play();
 
         end_time = particles[0].main.duration + Time.time;
-        Debug.Log(particles[0].main.duration);
     }
 
     private void Update()

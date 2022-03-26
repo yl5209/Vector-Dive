@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Threading.Tasks;
 
 public class GameManager : MonoBehaviour
 {
@@ -70,19 +71,34 @@ public class GameManager : MonoBehaviour
         OnGameStateChanged?.Invoke(newState);
     }
 
-    public void HandleCombatState()
+    public async void HandleCombatState()
     {
         //Expand Arena
         Edge.SetRadius(20f, 2f);
+
+        CameraManager.Dive();
+
+        while(CameraManager.CheckDive())
+        {
+            Debug.Log("Is Diving");
+            await Task.Yield();
+        }
 
         //Start Wave
         EntityManager.instance.SpawnWave();
     }
 
-    public void HandleBassFightState()
+    public async void HandleBassFightState()
     {
         //Expand Arena
         Edge.SetRadius(25f, 2f);
+
+        CameraManager.Dive();
+
+        if (CameraManager.CheckDive())
+        {
+            await Task.Yield();
+        }
 
         //Start Wave
         EntityManager.instance.SpawnWave();

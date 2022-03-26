@@ -11,26 +11,26 @@ public class EntityManager : MonoBehaviour
     public static event Action OnEnemyDeath;
     public static void EnemyDeath()
     {
-        Debug.Log("Enemy Death");
+        //Debug.Log("Enemy Death");
         OnEnemyDeath?.Invoke();
     }
     public static event Action OnEnemySpawn;
     public static void EnemySpawn()
     {
-        Debug.Log("Enemy Spawn");
+        //Debug.Log("Enemy Spawn");
         OnEnemySpawn?.Invoke();
     }
     public static event Action OnWaveClear;
     public static void WaveClear()
     {
-        Debug.Log("Wave Clear");
+        //Debug.Log("Wave Clear");
         OnWaveClear?.Invoke();
     }
     public static event Action OnWaveTimeEnd;
 
     public static void WaveTimeEnd()
     {
-        Debug.Log("Wave Time End");
+        //Debug.Log("Wave Time End");
         OnWaveTimeEnd?.Invoke();
     }
 
