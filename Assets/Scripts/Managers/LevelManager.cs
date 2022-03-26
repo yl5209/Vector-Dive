@@ -7,16 +7,19 @@ using System.Threading.Tasks;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instacne;
+
     public static Level current_level;
     public static SubLevel current_sublevel;
 
-    public static event Action OnWaveClear;
     public static int current_level_index = 0;
+    public static int current_sublevel_index = 0;
+    public static int current_wave_index = 0;
 
     public static void LoadLevel(Level level)
     {
         current_level = level;
         current_sublevel = level.subLevels[0];
+        current_level_index = 0;
     }
 
     public static void StartLevel()
@@ -24,9 +27,30 @@ public class LevelManager : MonoBehaviour
         EntityManager.instance.SpawnWave();
     }
 
+    public static void NextSubLevel()
+    {
+        current_level_index++;
+        current_sublevel = current_level.subLevels[current_level_index];
+    }
+
+    public static Wave GetNextWave()
+    {
+        int temp = current_wave_index;
+        current_wave_index++;
+        if (current_wave_index >= current_sublevel.waves.Count)
+            current_wave_index = 0;
+
+        return current_sublevel.waves[current_wave_index];
+    }
+
     public static void Clear()
     {
         current_level = null;
+    }
+
+    public static void ResetLevelManager()
+    {
+        LoadLevel(LevelDatabase.instance.levels[current_level_index]);
     }
 
     private void Start()

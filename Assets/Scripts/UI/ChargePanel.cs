@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using DG.Tweening;
 
 public class ChargePanel : MonoBehaviour
 {
@@ -51,5 +52,11 @@ public class ChargePanel : MonoBehaviour
             charge_current = charge_max;
             FullCharge?.Invoke();
         }
+    }
+
+    public void ResetBar()
+    {
+        DOVirtual.Int(charge_current, 0, 3f, (x) => { charge_current = x; });
+        charge_max = LevelManager.current_sublevel.charge;
     }
 }

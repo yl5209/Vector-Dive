@@ -102,7 +102,7 @@ public class PlayerMovement : Vehicle
 
     private void PlayerMove()
     {
-        ApplyForceRb(PlayerInput.instance.raw * speed);
+        ApplyForceRb(PlayerInput.instance.Raw * speed);
     }
 
     private void OnDrawGizmos()

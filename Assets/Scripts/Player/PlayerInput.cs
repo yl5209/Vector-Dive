@@ -12,50 +12,55 @@ public class PlayerInput : MonoBehaviour
     }
 
     public bool isDisabled;
-    public Vector2 input
+    public Vector2 Input
     {
         get
         {
             if (this.isDisabled) return Vector2.zero;
 
             Vector2 i = Vector2.zero;
-            i.x = Input.GetAxis("Horizontal");
-            i.y = Input.GetAxis("Vertical");
+            i.x = UnityEngine.Input.GetAxis("Horizontal");
+            i.y = UnityEngine.Input.GetAxis("Vertical");
             i *= (i.x != 0.0f && i.y != 0.0f) ? .7071f : 1.0f;
             return i;
         }
     }
 
-    public Vector2 raw
+    public Vector2 Raw
     {
         get
         {
             if (this.isDisabled) return Vector2.zero;
 
             Vector2 i = Vector2.zero;
-            i.x = Input.GetAxisRaw("Horizontal");
-            i.y = Input.GetAxisRaw("Vertical");
+            i.x = UnityEngine.Input.GetAxisRaw("Horizontal");
+            i.y = UnityEngine.Input.GetAxisRaw("Vertical");
             i *= (i.x != 0.0f && i.y != 0.0f) ? .7071f : 1.0f;
             return i;
         }
     }
 
-    public Vector2 mouseLook
+    public Vector2 MouseLook
     {
         get
         {
             if (this.isDisabled) return Vector2.zero;
 
             Vector2 i = Vector2.zero;
-            i.x = Input.GetAxis("Mouse X");
-            i.y = Input.GetAxis("Mouse Y");
+            i.x = UnityEngine.Input.GetAxis("Mouse X");
+            i.y = UnityEngine.Input.GetAxis("Mouse Y");
             return i;
         }
     }
 
-    public bool charge
+    public bool Charge
     {
-        get { if (this.isDisabled) return false; return Input.GetMouseButton(0); }
+        get { if (this.isDisabled) return false; return UnityEngine.Input.GetMouseButton(0); }
+    }
+
+    public bool Dive
+    {
+        get { if (this.isDisabled) return false; return UnityEngine.Input.GetKeyDown(KeyCode.Space); }
     }
 
 }

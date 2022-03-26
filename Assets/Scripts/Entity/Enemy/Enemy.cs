@@ -19,11 +19,11 @@ public class Enemy : Entity
 
     public override void ApplyDamage(int _dmg)
     {
-        base.ApplyDamage(_dmg);
         GetComponentInChildren<SpriteGlow>().Glow();
+        base.ApplyDamage(_dmg);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag == "Bullet")
         {
@@ -43,13 +43,19 @@ public class Enemy : Entity
                     GetComponent<Vehicle>().ApplyForceRb(b.dir * b.Force);
                 }
             }
-
         }
     }
 
     public override void Death()
     {
         ChargePanel.instance.AddCharge(dive_point);
+        EntityManager.EnemyDeath();
+        base.Death();
+    }
+
+    public void Kill()
+    {
+        EntityManager.EnemyDeath();
         base.Death();
     }
 
@@ -73,7 +79,6 @@ public class Enemy : Entity
     //                GetComponent<Vehicle>().ApplyForceRb(b.dir * b.Force);
     //            }
     //        }
-
     //    }
     //}
 }

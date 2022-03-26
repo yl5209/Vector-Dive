@@ -36,5 +36,6 @@ public enum WaveType
     Group,
     Random,
     Point,
-    Boss
+    Boss,
+    Victory
 }

@@ -28,15 +28,16 @@ MonoBehaviour:
     - type: 0
       enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
       time: 10
-      number: 10
+      number: 5
       radius: 3
     - type: 0
       enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
       time: 10
-      number: 10
+      number: 5
       radius: 3
     - type: 1
       enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
       time: 10
-      number: 20
+      number: 5
       radius: 3
+    charge: 0

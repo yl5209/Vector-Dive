@@ -5,6 +5,8 @@ using UnityEngine;
 public class ParticleController : MonoBehaviour
 {
     public List<ParticleSystem> particles;
+    public bool playOnStart = true;
+    //public bool destoryOnEnd = true;
 
     public void Play()
     {
@@ -12,5 +14,15 @@ public class ParticleController : MonoBehaviour
         {
             p.Play();
         }
+    }
+
+    private void Start()
+    {
+        if (playOnStart)
+            Play();
+    }
+
+    private void Update()
+    {
     }
 }

@@ -9,9 +9,30 @@ public class EntityManager : MonoBehaviour
     public static EntityManager instance;
 
     public static event Action OnEnemyDeath;
+    public static void EnemyDeath()
+    {
+        Debug.Log("Enemy Death");
+        OnEnemyDeath?.Invoke();
+    }
     public static event Action OnEnemySpawn;
-    public static event Action WaveClear;
+    public static void EnemySpawn()
+    {
+        Debug.Log("Enemy Spawn");
+        OnEnemySpawn?.Invoke();
+    }
+    public static event Action OnWaveClear;
+    public static void WaveClear()
+    {
+        Debug.Log("Wave Clear");
+        OnWaveClear?.Invoke();
+    }
     public static event Action OnWaveTimeEnd;
+
+    public static void WaveTimeEnd()
+    {
+        Debug.Log("Wave Time End");
+        OnWaveTimeEnd?.Invoke();
+    }
 
     //public int max_enemies;
     public int active_enemies;
@@ -24,6 +45,7 @@ public class EntityManager : MonoBehaviour
     private Vector3 group_spawn_point;
     private bool isSpawning, spawn_flag;
     private float spawn_timer;
+    private int overlap_check = 10;
 
     private void Awake()
     {
@@ -36,22 +58,24 @@ public class EntityManager : MonoBehaviour
         active_enemies = 0;
 
         OnEnemySpawn += () => { active_enemies++; };
-        OnEnemyDeath += () => { 
+        OnEnemyDeath += () =>
+        {
             active_enemies--;
-            if (!isSpawning)
-                WaveClear?.Invoke();
+            Debug.Log("Enemy Died");
+            if (!isSpawning && active_enemies <= 0)
+                WaveClear();
         };
 
-        WaveClear += SpawnWave;
+        OnWaveClear += SpawnWave;
         OnWaveTimeEnd += SpawnWave;
     }
 
     private void Update()
     {
-        if(Time.time > spawn_timer && spawn_flag)
+        if (Time.time > spawn_timer && spawn_flag)
         {
             spawn_flag = !spawn_flag;
-            OnWaveTimeEnd?.Invoke();
+            WaveTimeEnd();
         }
     }
 
@@ -62,15 +86,73 @@ public class EntityManager : MonoBehaviour
 
     public void SpawnWave()
     {
-        StartCoroutine(SpawnWave(LevelManager.current_sublevel.GetCurrentWave()));
+        SpawnWave(LevelManager.GetNextWave());
     }
 
-    public IEnumerator SpawnWave(Wave wave)
+    public void SpawnWave(Wave wave)
+    {
+        switch (wave.type)
+        {
+            case WaveType.Group:
+                StartCoroutine(HandleGroupWave(wave));
+                break;
+            case WaveType.Random:
+                StartCoroutine(HandleRandomWave(wave));
+                break;
+            case WaveType.Point:
+                break;
+            case WaveType.Boss:
+                HandleBossWave(wave);
+                break;
+        }
+    }
+
+    public IEnumerator HandleGroupWave(Wave wave)
     {
         int num = 0;
         GameObject obj;
 
-        group_spawn_point = new Vector3(UnityEngine.Random.Range(-Edge.radius, Edge.radius), UnityEngine.Random.Range(-Edge.radius, Edge.radius), 0);
+        group_spawn_point = CalculateGroupSpawnPosition();
+        isSpawning = true;
+        spawn_timer = Time.time + wave.time;
+        spawn_flag = true;
+
+        var end = Time.time + spawn_time;
+
+        while (num < wave.number)
+        {
+            end = Time.time + spawn_time;
+
+            if (Time.time < end)
+            {
+                yield return null;
+            }
+
+            Vector3 pos = new Vector3(group_spawn_point.x + UnityEngine.Random.Range(-group_radius, group_radius), group_spawn_point.y + UnityEngine.Random.Range(-group_radius, group_radius), 0);
+            for (int i = 0; i < overlap_check; i++)
+            {
+                if (Physics2D.OverlapCircle(pos, 1f, LayerMask.GetMask("Enemy")) != null)
+                {
+                    pos = new Vector3(group_spawn_point.x + UnityEngine.Random.Range(-group_radius, group_radius), group_spawn_point.y + UnityEngine.Random.Range(-group_radius, group_radius), 0);
+                }
+            }
+
+            obj = Instantiate(spawner_prefab, pos, Quaternion.identity);
+            obj.GetComponent<EnemySpawner>().prefab = wave.enemy;
+            EnemySpawn();
+            num++;
+
+            yield return null;
+        }
+
+        isSpawning = false;
+    }
+
+    public IEnumerator HandleRandomWave(Wave wave)
+    {
+        int num = 0;
+        GameObject obj;
+
         isSpawning = true;
         spawn_timer = Time.time + wave.time;
         spawn_flag = true;
@@ -79,13 +161,24 @@ public class EntityManager : MonoBehaviour
         {
             var end = Time.time + spawn_time;
 
-            while(Time.time < end)
+            if (Time.time < end)
             {
                 yield return null;
             }
 
-            obj = Instantiate(spawner_prefab, CalculateSpawnPosition(wave.type), Quaternion.identity);
+            Vector3 pos = new Vector3(UnityEngine.Random.Range(-Edge.radius, Edge.radius), UnityEngine.Random.Range(-Edge.radius, Edge.radius), 0);
+            for (int i = 0; i < overlap_check; i++)
+            {
+                if (Physics2D.OverlapCircle(pos, 1f, LayerMask.GetMask("Enemy")) != null)
+                {
+                    pos = new Vector3(UnityEngine.Random.Range(-Edge.radius, Edge.radius), UnityEngine.Random.Range(-Edge.radius, Edge.radius), 0);
+                }
+            }
+
+            obj = Instantiate(spawner_prefab, pos, Quaternion.identity);
             obj.GetComponent<EnemySpawner>().prefab = wave.enemy;
+            EnemySpawn();
+            num++;
 
             yield return null;
         }
@@ -93,20 +186,22 @@ public class EntityManager : MonoBehaviour
         isSpawning = false;
     }
 
-    public Vector3 CalculateSpawnPosition(WaveType type)
+    public void HandleBossWave(Wave wave)
     {
-        Vector3 pos = Vector3.zero;
+        GameObject obj;
+        obj = Instantiate(spawner_prefab, Vector3.zero, Quaternion.identity);
+        obj.GetComponent<EnemySpawner>().prefab = wave.enemy;
+    }
 
-        switch (type)
+    public Vector3 CalculateGroupSpawnPosition()
+    {
+        Vector3 vector3 = new Vector3(UnityEngine.Random.Range(-Edge.radius, Edge.radius), UnityEngine.Random.Range(-Edge.radius, Edge.radius), 0);
+
+        while (Physics2D.OverlapCircle(vector3, 3f, LayerMask.GetMask("Enemy")) != null)
         {
-            case WaveType.Group:
-                pos = new Vector3(group_spawn_point.x + UnityEngine.Random.Range(-group_radius, group_radius), group_spawn_point.y + UnityEngine.Random.Range(-group_radius, group_radius), 0);
-                break;
-            case WaveType.Random:
-                pos = new Vector3(UnityEngine.Random.Range(-Edge.radius, Edge.radius), UnityEngine.Random.Range(-Edge.radius, Edge.radius), 0);
-                break;
+            vector3 = new Vector3(UnityEngine.Random.Range(-Edge.radius, Edge.radius), UnityEngine.Random.Range(-Edge.radius, Edge.radius), 0);
         }
 
-        return pos;
+        return vector3;
     }
 }

@@ -16,16 +16,7 @@ public class Wave
 public class SubLevel
 {
     public List<Wave> waves;
-    public int wave_counter = 0;
-    public Wave GetCurrentWave()
-    {
-        int temp = wave_counter;
-        wave_counter++;
-        if (wave_counter >= waves.Count)
-            wave_counter = 0;
-
-        return waves[temp];
-    }
+    public int charge;
 }
 
 [CreateAssetMenu(fileName = "New Level", menuName = "Level")]

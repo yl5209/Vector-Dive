@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898403028710538046}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 7.58, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1898403030140068247}
@@ -123,6 +123,7 @@ MonoBehaviour:
   hp: 10
   def: 0
   type: 1
+  death_vfx: {fileID: 1261639055444343149, guid: feeba120cb67cb4499b3ebfa080291e6, type: 3}
   dive_point: 1
 --- !u!1 &1898403030140068245
 GameObject:

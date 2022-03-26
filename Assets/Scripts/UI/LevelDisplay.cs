@@ -12,8 +12,6 @@ public class LevelDisplay : MonoBehaviour
     {
         tmp = display.GetComponentInChildren<TextMeshProUGUI>();
         UpdateLevelName();
-        Debug.Log(tmp);
-        Debug.Log(LevelManager.current_level.Name);
     }
 
     // Update is called once per frame

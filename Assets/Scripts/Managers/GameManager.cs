@@ -50,21 +50,76 @@ public class GameManager : MonoBehaviour
             case GameState.TrackSelection:
                 break;
             case GameState.Combat:
-                Edge.SetRadius(25f, 2f);
+                HandleCombatState();
                 break;
             case GameState.BossFight:
                 break;
             case GameState.Upgrade:
+                HandleUpgradeState();
                 break;
             case GameState.Victory:
+                HandleVicotyState();
                 break;
             case GameState.Defeat:
+                HandleDefeatState();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
 
         OnGameStateChanged?.Invoke(newState);
+    }
+
+    public void HandleCombatState()
+    {
+        //Expand Arena
+        Edge.SetRadius(20f, 2f);
+
+        //Start Wave
+        EntityManager.instance.SpawnWave();
+    }
+
+    public void HandleBassFightState()
+    {
+        //Expand Arena
+        Edge.SetRadius(25f, 2f);
+
+        //Start Wave
+        EntityManager.instance.SpawnWave();
+    }
+
+    public void HandleUpgradeState()
+    {
+        //Pause Enemy Spawn
+        EntityManager.instance.StopSpawn();
+
+        //Kill all current enemies
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(Vector2.zero, Edge.radius * 2f, LayerMask.GetMask("Enemy"));
+        foreach (Collider2D c in colliders)
+        {
+            c.gameObject.GetComponent<Enemy>().Kill();
+        }
+
+        //Change Background Color
+        CameraManager.ChangeColor(Color.black);
+
+        //Update level
+        LevelManager.NextSubLevel();
+
+        //Update charge panel
+        ChargePanel.instance.ResetBar();
+    }
+
+    public void HandleVicotyState()
+    {
+        //Change Background Color
+        CameraManager.ChangeColor(Color.HSVToRGB(0.5f, 0.5f, 1f));
+    }
+
+    public void HandleDefeatState()
+    {
+        //Change Background Color
+        CameraManager.ChangeColor(Color.HSVToRGB(0f, 0f, 0.3f));
     }
 
     public void Exit()

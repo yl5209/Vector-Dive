@@ -55,7 +55,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerInput.instance.charge)
+        if (PlayerInput.instance.Charge)
         {
             if (charge > Charge_time)
             {
