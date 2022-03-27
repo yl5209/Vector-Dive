@@ -4843,7 +4843,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 947d1afc22158f94ba3f6a80ba179e69, type: 2}
+  - {fileID: 2100000, guid: 028d9f266539ddf4eb23dc414bc6635f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9827,5 +9827,5 @@ MonoBehaviour:
   - {fileID: 1261639054843896725}
   - {fileID: 588880352793497616}
   playOnStart: 1
-  destoryOnEnd: 1
-  end_time: 0
+  destoryOnEnd: 0
+  loop: 1

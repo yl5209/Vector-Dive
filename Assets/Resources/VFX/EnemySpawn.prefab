@@ -4929,7 +4929,8 @@ MonoBehaviour:
   - {fileID: 7987996971964781643}
   - {fileID: 7987996970341859659}
   playOnStart: 1
-  destoryOnEnd: 1
+  destoryOnEnd: 0
+  loop: 0
 --- !u!1 &7987996971964781640
 GameObject:
   m_ObjectHideFlags: 0
@@ -5588,7 +5589,7 @@ ParticleSystem:
         m_RotationOrder: 4
   ShapeModule:
     serializedVersion: 6
-    enabled: 1
+    enabled: 0
     type: 0
     angle: 25
     length: 5

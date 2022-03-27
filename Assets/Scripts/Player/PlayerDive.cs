@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerDive : MonoBehaviour
 {
+    public GameObject levelwipe_vfx;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,13 +27,20 @@ public class PlayerDive : MonoBehaviour
         {
             if (LevelManager.IsLastWave())
             {
+                PlayVFX();
                 GameManager.instance.UpdateGameState(GameState.Victory);
             }
             else
             {
+                PlayVFX();
                 GameManager.instance.UpdateGameState(GameState.Upgrade);
             }
         }
 
+    }
+
+    public void PlayVFX()
+    {
+        Instantiate(levelwipe_vfx, transform.position, Quaternion.identity);
     }
 }

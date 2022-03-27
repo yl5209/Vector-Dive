@@ -7,13 +7,20 @@ public class ParticleController : MonoBehaviour
     public List<ParticleSystem> particles;
     public bool playOnStart = true;
     public bool destoryOnEnd = true;
+    public bool loop = false;
 
-    public float end_time;
+    private float end_time;
 
     public void Play()
     {
         foreach (ParticleSystem p in particles)
         {
+            if (loop)
+            {
+                ParticleSystem.MainModule main = p.main;
+                main.loop = true;
+            }
+
             p.Play();
         }
     }
@@ -28,9 +35,12 @@ public class ParticleController : MonoBehaviour
 
     private void Update()
     {
-        if(Time.time > end_time)
+        if (destoryOnEnd)
         {
-            Destroy(gameObject);
+            if (Time.time > end_time)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
