@@ -37,7 +37,7 @@ public class CameraManager : MonoBehaviour
 
     public static void ChangeColor()
     {
-        main_camera.DOColor(Random.ColorHSV(0.0f, 1.0f, 0.3f, 0.7f, 0.3f, 0.7f), transiton_time).SetEase(Ease.OutCirc);
+        main_camera.DOColor(Random.ColorHSV(0.0f, 1.0f, 0.3f, 0.65f, 0.3f, 0.65f), transiton_time).SetEase(Ease.OutCirc);
     }
 
     public static void ChangeColor(Color color)

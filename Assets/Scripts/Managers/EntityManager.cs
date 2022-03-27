@@ -61,7 +61,6 @@ public class EntityManager : MonoBehaviour
         OnEnemyDeath += () =>
         {
             active_enemies--;
-            Debug.Log("Enemy Died");
             if (!isSpawning && active_enemies <= 0)
                 WaveClear();
         };
@@ -86,7 +85,8 @@ public class EntityManager : MonoBehaviour
 
     public void SpawnWave()
     {
-        SpawnWave(LevelManager.GetNextWave());
+        if (GameManager.instance.State == GameState.Combat)
+            SpawnWave(LevelManager.NextWave());
     }
 
     public void SpawnWave(Wave wave)

@@ -29,7 +29,6 @@ public abstract class Entity : MonoBehaviour
     {
         if (death_vfx != null)
         {
-            Debug.Log("Death VFX");
             Instantiate(death_vfx, transform.position, Quaternion.identity);
         }
         Destroy(gameObject);

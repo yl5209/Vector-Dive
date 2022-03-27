@@ -25,6 +25,8 @@ public class MenuManager : MonoBehaviour
         _ModePanel.SetActive(state == GameState.ModeSelection);
         _ChargePanel.SetActive(state == GameState.Combat);
         _LevelSelectionPanel.SetActive(state == GameState.TrackSelection);
+        _VictoryPanel.SetActive(state == GameState.Victory);
+        _DefeatPanel.SetActive(state == GameState.Defeat);
     }
 
     // Start is called before the first frame update

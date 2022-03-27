@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
         switch (State)
         {
             case GameState.Mainmenu:
+                HandleMainmenuState();
                 break;
             case GameState.Option:
                 break;
@@ -68,7 +69,14 @@ public class GameManager : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
 
+        Debug.Log(LevelManager.current_level_index + " " + LevelManager.current_sublevel_index + " " + LevelManager.current_wave_index);
+
         OnGameStateChanged?.Invoke(newState);
+    }
+
+    public void HandleMainmenuState()
+    {
+        LevelManager.ResetLevelManager();
     }
 
     public async void HandleCombatState()
@@ -78,9 +86,11 @@ public class GameManager : MonoBehaviour
 
         CameraManager.Dive();
 
-        while(CameraManager.CheckDive())
+        //Update charge panel
+        ChargePanel.instance.ResetBar();
+
+        while (CameraManager.CheckDive())
         {
-            Debug.Log("Is Diving");
             await Task.Yield();
         }
 
@@ -111,31 +121,66 @@ public class GameManager : MonoBehaviour
 
         //Kill all current enemies
         Collider2D[] colliders = Physics2D.OverlapCircleAll(Vector2.zero, Edge.radius * 2f, LayerMask.GetMask("Enemy"));
-        foreach (Collider2D c in colliders)
+        if (colliders.Length > 0)
         {
-            c.gameObject.GetComponent<Enemy>().Kill();
+            foreach (Collider2D c in colliders)
+            {
+                Enemy enemy;
+                EnemySpawner enemySpawner;
+                if (c.gameObject.TryGetComponent(out enemy))
+                    c.gameObject.GetComponent<Enemy>().Kill();
+                if (c.gameObject.TryGetComponent(out enemySpawner))
+                    c.gameObject.GetComponent<EnemySpawner>().Kill();
+            }
         }
 
         //Change Background Color
-        CameraManager.ChangeColor(Color.black);
+        CameraManager.ChangeColor(Color.gray);
 
         //Update level
         LevelManager.NextSubLevel();
-
-        //Update charge panel
-        ChargePanel.instance.ResetBar();
     }
 
     public void HandleVicotyState()
     {
         //Change Background Color
-        CameraManager.ChangeColor(Color.HSVToRGB(0.5f, 0.5f, 1f));
+        CameraManager.ChangeColor(Color.HSVToRGB(0.15f, 0.6f, 0.6f));
+
+        //Kill all current enemies
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(Vector2.zero, Edge.radius * 2f, LayerMask.GetMask("Enemy"));
+        if (colliders.Length > 0)
+        {
+            foreach (Collider2D c in colliders)
+            {
+                Enemy enemy;
+                EnemySpawner enemySpawner;
+                if (c.gameObject.TryGetComponent(out enemy))
+                    c.gameObject.GetComponent<Enemy>().Kill();
+                if (c.gameObject.TryGetComponent(out enemySpawner))
+                    c.gameObject.GetComponent<EnemySpawner>().Kill();
+            }
+        }
     }
 
     public void HandleDefeatState()
     {
         //Change Background Color
         CameraManager.ChangeColor(Color.HSVToRGB(0f, 0f, 0.3f));
+
+        //Kill all current enemies
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(Vector2.zero, Edge.radius * 2f, LayerMask.GetMask("Enemy"));
+        if (colliders.Length > 0)
+        {
+            foreach (Collider2D c in colliders)
+            {
+                Enemy enemy;
+                EnemySpawner enemySpawner;
+                if (c.gameObject.TryGetComponent(out enemy))
+                    c.gameObject.GetComponent<Enemy>().Kill();
+                if (c.gameObject.TryGetComponent(out enemySpawner))
+                    c.gameObject.GetComponent<EnemySpawner>().Kill();
+            }
+        }
     }
 
     public void Exit()

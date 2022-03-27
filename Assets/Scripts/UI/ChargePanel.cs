@@ -20,6 +20,8 @@ public class ChargePanel : MonoBehaviour
 
     public static event Action FullCharge;
 
+    public bool IsFullCharge { get { return charge_current == charge_max; } }
+
     private void Awake()
     {
         instance = this;

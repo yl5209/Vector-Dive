@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         particleController = GetComponentInChildren<ParticleController>();
-        Spawn();
+        StartCoroutine(Spawn());
     }
 
     // Update is called once per frame
@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
 
     }
 
-    public async void Spawn()
+    public IEnumerator Spawn()
     {
         particleController.Play();
 
@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
 
         while (Time.time < end)
         {
-            await Task.Yield();
+            yield return null;
         }
 
         Instantiate(prefab, transform.position, Quaternion.identity);
@@ -49,6 +49,14 @@ public class EnemySpawner : MonoBehaviour
         }
 
         Instantiate(enemy, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+
+    }
+
+    public void Kill()
+    {
+        EntityManager.EnemyDeath();
+        StopAllCoroutines();
         Destroy(gameObject);
     }
 }

@@ -39,3 +39,9 @@ public enum WaveType
     Boss,
     Victory
 }
+
+public enum LevelType
+{
+    Enemy,
+    Boss,
+}

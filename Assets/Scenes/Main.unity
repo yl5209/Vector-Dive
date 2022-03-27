@@ -1785,6 +1785,7 @@ GameObject:
   - component: {fileID: 1954876274}
   - component: {fileID: 1954876277}
   - component: {fileID: 1954876273}
+  - component: {fileID: 1954876278}
   m_Layer: 8
   m_Name: Player
   m_TagString: Entity
@@ -1885,6 +1886,18 @@ MonoBehaviour:
   type: 0
   death_vfx: {fileID: 0}
   PlayerMovement: {fileID: 0}
+--- !u!114 &1954876278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954876272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3349e36c534ee1498f9a21de1f7e90c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1958059661 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9175585252838102909, guid: 554d98a8648ee0c4f88cdd4616c3ab29, type: 3}
@@ -2420,6 +2433,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 970592661}
     m_Modifications:
+    - target: {fileID: 4107128028996829848, guid: 227acdb6ae0162141b25c0dacbaadd81, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107128028996829848, guid: 227acdb6ae0162141b25c0dacbaadd81, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107128028996829848, guid: 227acdb6ae0162141b25c0dacbaadd81, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1799708309}
+    - target: {fileID: 4107128028996829848, guid: 227acdb6ae0162141b25c0dacbaadd81, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107128028996829848, guid: 227acdb6ae0162141b25c0dacbaadd81, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateGameState
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107128028996829848, guid: 227acdb6ae0162141b25c0dacbaadd81, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107128028996829848, guid: 227acdb6ae0162141b25c0dacbaadd81, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Combat
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107128028996829848, guid: 227acdb6ae0162141b25c0dacbaadd81, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4107128029119178345, guid: 227acdb6ae0162141b25c0dacbaadd81, type: 3}
       propertyPath: m_Name
       value: Upgrade Panel
@@ -2538,6 +2583,10 @@ PrefabInstance:
     - target: {fileID: 8125871719450600920, guid: d701ade2364357847a083bce366c6a69, type: 3}
       propertyPath: m_Name
       value: Victory Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125871719450600920, guid: d701ade2364357847a083bce366c6a69, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8125871719450600923, guid: d701ade2364357847a083bce366c6a69, type: 3}
       propertyPath: m_Pivot.x
