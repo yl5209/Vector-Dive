@@ -215,20 +215,6 @@
                 },
                 "m_SlotId": 0
             }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "ed8afb55b605493aa557a9b906422b6c"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "d2fa12b52aaf4d1c908908a92dfca58c"
-                },
-                "m_SlotId": 0
-            }
         }
     ],
     "m_VertexContext": {
@@ -904,8 +890,8 @@
     "m_ShaderOutputName": "Tiling",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 2.0,
-        "y": 2.0
+        "x": 1.0,
+        "y": 1.0
     },
     "m_DefaultValue": {
         "x": 0.0,
@@ -1631,8 +1617,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -617.0000610351563,
-            "y": -11.000014305114746,
+            "x": -657.0,
+            "y": 27.0,
             "width": 107.0,
             "height": 34.0
         }
@@ -1889,10 +1875,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -463.0,
-            "y": -40.000003814697269,
+            "x": -502.9999694824219,
+            "y": -2.0000057220458986,
             "width": 208.0,
-            "height": 303.0
+            "height": 302.0
         }
     },
     "m_Slots": [
