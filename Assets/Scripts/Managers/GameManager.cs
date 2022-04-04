@@ -29,6 +29,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void Init()
+    {
+        UpdateGameState(GameState.Mainmenu);
+    }
+
     public void UpdateGameState(string newState)
     {
         UpdateGameState((GameState)System.Enum.Parse(typeof(GameState), newState));

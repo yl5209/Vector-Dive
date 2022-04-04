@@ -17,36 +17,60 @@ MonoBehaviour:
   - waves:
     - type: 1
       enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
-      time: 8
-      number: 5
+      time: 5
+      number: 20
       radius: 5
     - type: 0
       enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
-      time: 8
+      time: 5
       number: 10
-      radius: 5
-    charge: 10
+      radius: 10
+    charge: 50
   - waves:
     - type: 1
       enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
-      time: 8
-      number: 10
+      time: 5
+      number: 20
       radius: 5
     - type: 0
       enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
-      time: 8
+      time: 5
       number: 10
-      radius: 5
-    charge: 15
+      radius: 10
+    charge: 75
   - waves:
     - type: 1
       enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
-      time: 8
+      time: 5
       number: 15
       radius: 5
     - type: 0
       enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
-      time: 8
+      time: 5
       number: 15
+      radius: 20
+    charge: 100
+  - waves:
+    - type: 1
+      enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
+      time: 5
+      number: 20
       radius: 5
-    charge: 20
+    - type: 0
+      enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
+      time: 5
+      number: 15
+      radius: 20
+    charge: 100
+  - waves:
+    - type: 1
+      enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
+      time: 5
+      number: 25
+      radius: 5
+    - type: 0
+      enemy: {fileID: 1898403028710538046, guid: 0bcdf184ea61e75408b83586510252af, type: 3}
+      time: 5
+      number: 20
+      radius: 20
+    charge: 100

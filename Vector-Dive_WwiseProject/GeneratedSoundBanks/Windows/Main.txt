@@ -1,0 +1,20 @@
+Event	ID	Name			Wwise Object Path	Notes
+	1432588725	Select			\Default Work Unit\UI\Select	
+	2086246005	Set_State_Defeat			\Default Work Unit\State\Set_State_Defeat	
+	2302270969	Set_State_Menu			\Default Work Unit\State\Set_State_Menu	
+	3753593413	Hover			\Default Work Unit\UI\Hover	
+	3974925374	Set_State_Victory			\Default Work Unit\State\Set_State_Victory	
+	4207344442	Set_State_Game			\Default Work Unit\State\Set_State_Game	
+	4244672888	Set_State_Upgrade			\Default Work Unit\State\Set_State_Upgrade	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	988953028	SFXVolume			\Default Work Unit\SFXVolume	
+	2346531308	MusicVolume			\Default Work Unit\MusicVolume	
+	2918011349	MasterVolume			\Default Work Unit\MasterVolume	
+	3711523264	Global_LowPass			\Default Work Unit\Global_LowPass	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	182198037	VD_Button_Hovered_01	F:\Git\Vector-Dive\Vector-Dive_WwiseProject\.cache\Windows\SFX\VD_Button_Hovered_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Button Hover\VD_Button_Hovered_01\VD_Button_Hovered_01		2116864
+	816534850	VD_MainMenu	F:\Git\Vector-Dive\Vector-Dive_WwiseProject\.cache\Windows\SFX\VD_MainMenu_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Mainmenu_Container\Mainmenu\VD_MainMenu		28576864
+	849510033	VD_Button_Selected_01	F:\Git\Vector-Dive\Vector-Dive_WwiseProject\.cache\Windows\SFX\VD_Button_Selected_1_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Button Select\VD_Button_Selected_01\VD_Button_Selected_01		3528064
+

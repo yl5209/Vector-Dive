@@ -16,6 +16,9 @@ public class CameraDive : MonoBehaviour
     private Tween dive;
     private Tween fall;
 
+    private Tween low_pass;
+    private Tween low_pass_recover;
+
 
     void Start()
     {
@@ -35,6 +38,16 @@ public class CameraDive : MonoBehaviour
     {
         cameraFollow.look_at = false;
         IsDiving = true;
+
+        //Audio tween
+        low_pass = DOVirtual.Float(0f, 1f, duration, (x) => { AudioManager.instance.SetLowPass(x); }).SetEase(Ease.InQuint).Pause().SetAutoKill(false).OnComplete(() =>
+        {
+            low_pass_recover = DOVirtual.Float(1f, 0f, fall_duration, (x) => { AudioManager.instance.SetLowPass(x); }).SetEase(Ease.InCubic).Pause().SetAutoKill(false);
+            low_pass_recover.Restart();
+        });
+        low_pass.Restart();
+
+        //Actual position tween
         dive = transform.DOMove(new Vector3(Player.instance.transform.position.x, Player.instance.transform.position.y, dive_depth), duration).SetEase(Ease.InBack).Pause().SetAutoKill(false).OnComplete(() =>
         {
 

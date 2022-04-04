@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 0
   dmg: 10
   dmg_type: 0
-  fire_rate: 1.2
+  fire_rate: 1.5
   multi_shot: 1
   bullet_speed: 70
   bullet_speed_offet: 0

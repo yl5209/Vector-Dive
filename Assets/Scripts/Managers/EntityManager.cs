@@ -117,11 +117,9 @@ public class EntityManager : MonoBehaviour
         spawn_timer = Time.time + wave.time;
         spawn_flag = true;
 
-        var end = Time.time + spawn_time;
-
         while (num < wave.number)
         {
-            end = Time.time + spawn_time;
+            var end = Time.time + spawn_time;
 
             if (Time.time < end)
             {
