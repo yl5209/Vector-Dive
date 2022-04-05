@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
         }
 
         //Change Background Color
-        CameraManager.ChangeColor(Color.gray);
+        CameraManager.ChangeColor(new Color(0.2f, 0.2f, 0.2f));
 
         //Update level
         LevelManager.NextSubLevel();
